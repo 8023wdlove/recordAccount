@@ -1,5 +1,16 @@
 var fs = require('fs');
 var path= require('path')
+if(fs.existsSync("./index.html")){  
+        fs.unlink("./index.html",function(err){  
+            if(err){  
+                console.error();  
+                throw err;  
+            }  
+            // console.log('文件删除成功');  
+        });  
+    }else{  
+        console.log("文件不存在");  
+    }  
 let components = []
 let str = 
 `<!DOCTYPE html>
@@ -24,15 +35,16 @@ let str3 =
         width:300px;
         height:200px;
         margin-left: 20px;
+        transition: all 0.6s;
+        margin-bottom: 20px;
     }
     img:hover {
-        transform: scale(1.5);
+        transform: scale(1.3);
     }
 </style>
 `
 const files = fs.readdirSync('./images')
 files.forEach(function (item, index) {
-    console.log(typeof item, item,999)
     let stat = fs.lstatSync("./images/" + item)
     if (stat.isDirectory() === true ) { 
       let info = {
@@ -51,7 +63,6 @@ components.forEach((item,index, arr )=>{
             item3.push('./images/'+item.name+'/'+item2)
         }
    })
-   console.log(item3,888);
     item.url = item3;
 })
 
@@ -60,7 +71,6 @@ components.forEach((item,index, arr )=>{
     `<div>
     <div>${item.name}</div>
     `
-    // let str6 = '';
     let str8 ='</div>';
     item.url.forEach((item2,index2,arr2)=>{
         let str7 = `<img src="${item2}" alt="${item.name}">`
