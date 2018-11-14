@@ -23,17 +23,18 @@ let str3 =
     img {
         width:300px;
         height:200px;
+        margin-left: 20px;
     }
     img:hover {
-        width:auto;
-        height:auto;
+        transform: scale(1.5);
     }
 </style>
 `
 const files = fs.readdirSync('./images')
 files.forEach(function (item, index) {
+    console.log(typeof item, item,999)
     let stat = fs.lstatSync("./images/" + item)
-    if (stat.isDirectory() === true) { 
+    if (stat.isDirectory() === true ) { 
       let info = {
           name:item,
           url:[]
@@ -43,9 +44,14 @@ files.forEach(function (item, index) {
 })
 components.forEach((item,index, arr )=>{
    let items = fs.readdirSync('./images/'+item.name)
-   let item3 = items.map((item2,index,arr)=>{
-        return path.join('./images/'+item.name+'/'+item2)
+   let item3 = []
+   items.forEach((item2,index,arr)=>{
+    let stat2= fs.lstatSync("./images/" + item.name +'/'+ item2)
+        if (stat2.isFile() === true && item2 !=='.DS_Store') { 
+            item3.push('./images/'+item.name+'/'+item2)
+        }
    })
+   console.log(item3,888);
     item.url = item3;
 })
 
