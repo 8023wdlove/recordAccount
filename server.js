@@ -29,7 +29,11 @@ let str3 =
 </html>
 <style>
     *{
-        background:white;
+        background:orange;
+    }
+    .name{
+        font-size: 40px;
+        margin-left: 20px;
     }
     img {
         width:300px;
@@ -69,7 +73,7 @@ components.forEach((item,index, arr )=>{
 components.forEach((item,index, arr )=>{
     let str6 =
     `<div>
-    <div>${item.name}</div>
+    <div class='name'>${item.name}</div>
     `
     let str8 ='</div>';
     item.url.forEach((item2,index2,arr2)=>{
