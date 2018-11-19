@@ -41,6 +41,7 @@ let str3 =
         margin-left: 20px;
         transition: all 0.6s;
         margin-bottom: 20px;
+        border-radius: 10px;
     }
     img:hover {
         transform: scale(1.3);
